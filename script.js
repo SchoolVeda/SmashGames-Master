@@ -100,7 +100,7 @@ const data = {
                     questtions: [
                         {question: "What does this do?", answer: "Cool stuff, obviously"},
                         {question: "What does that do?", answer: "Fun stuff, obviously"},
-                        {question: "How do you do?", answer: "Well, thanks for asking"}
+                        {question: "How do you do?", answer: "Well, thanks for asking!"}
                     ],
                 }
             ],
@@ -108,4 +108,11 @@ const data = {
     ],
 }
 
-console.log(data.pages[1].blocks[2].cards[1].body);
+let page = data.pages[1];
+document.title = data.brandName + " - " + page.pageName;
+
+document.getElementById("mainTitle").innerHTML = data.brandName.toUpperCase();
+document.getElementbyId("pageName").innerHTML = page.pageName;
+
+
+// console.log(data.pages[1].blocks[2].cards[1].body);
