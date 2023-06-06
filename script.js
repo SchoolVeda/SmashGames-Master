@@ -4,6 +4,7 @@ const data = {
         {
             name: "index",
             pageName: "Home",
+            // ask calToAction vs blocks, which to use when
             callToAction: {
                 src: "images/SmashGamesLogo-short.jpg",
                 altText: "Smash Games Logo"
@@ -103,6 +104,24 @@ const data = {
                         {question: "How do you do?", answer: "Well, thanks for asking!"}
                     ],
                 }
+            ],
+        },
+        {
+            name: "about",
+            pageName: "About Us",
+            blocks: [
+                // image, alt text, body text
+            ],
+        },
+        {
+            name: "contact",
+            pageName: "Contact Us",
+        },
+        {
+            name: "games",
+            pageName: "Our Games",
+            games: [
+                // each tile for the games, link blast if possible
             ],
         },
     ],
