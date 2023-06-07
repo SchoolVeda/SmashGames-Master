@@ -128,12 +128,30 @@ const data = {
 }
 
 let page = data.pages[1];
+let container = document.getElementById("main");
+
 document.title = data.brandName + " - " + page.pageName;
 
 document.getElementById("mainTitle").innerHTML = data.brandName.toUpperCase();
 document.getElementById("pageName").innerHTML = page.pageName;
 
-createCallToAction(page.blocks[0]);
+createPage(page.blocks);
+
+function createPage(blocks) {
+    for (let i = 0; i < blocks.length; i++) {
+        let currentBlock = blocks[i];
+        if (currentBlock.type == "call-to-action") {
+            createCallToAction(currentBlock);
+        }
+        else if (currentBlock.type == "description")
+        {
+            createDescription(currentBlock);
+        }
+        else {
+            console.log("no block template found");
+        }
+    }
+}
 
 function createImage(imgData) {
     let img = document.createElement("img");
@@ -142,7 +160,6 @@ function createImage(imgData) {
 
     return img;
 }
-
 function createButtonLink(linkData) {
     let link = document.createElement("a");
     link.classList.add("btn");
@@ -150,12 +167,9 @@ function createButtonLink(linkData) {
     link.target = "_blank";
     link.innerHTML = linkData.buttonLinkText + ' <i class="fa-brands fa-steam-symbol"></i></a>';
     return link;
-};
+}
 
 function createCallToAction(blockData) {
-    // get main container
-    let container = document.getElementById("main");
-
     // create block
     let block = document.createElement("div");
     block.classList.add("call-to-action");
@@ -170,6 +184,22 @@ function createCallToAction(blockData) {
     // add block to main
     container.appendChild(block);
 }
+function createDescription(blockData) {
+    // create block
+    let block = document.createElement("div");
+    block.classList.add("description", "block", "accent-color");
+
+    // add text 
+    let description = document.createElement("p");
+    description.classList.add("description-text");
+    description.innerText = blockData.text;
+
+    block.appendChild(description);
+
+    // add block to main
+    container.appendChild(block);
+} 
+
 
 // console.log(data.pages[1].blocks[2].cards[1].body);
 
