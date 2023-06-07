@@ -16,7 +16,7 @@ const data = {
             blocks: [
                 {
                     type: "call-to-action",
-                    src: "images/Inferno-Jumbotron.jpg",
+                    src: "images/Inferno-Jumbotron.png",
                     altText: "Inferno Blast Gameplay",
                     buttonLinkSrc: "https://steampowered.com",
                     buttonLinkText: "Buy now on Steam!"
@@ -138,7 +138,7 @@ createCallToAction(page.blocks[0]);
 function createImage(imgData) {
     let img = document.createElement("img");
     img.src = imgData.src;
-    img.alt = imgData.alt;
+    img.alt = imgData.altText;
 
     return img;
 }
