@@ -6,7 +6,7 @@ const data = {
             pageName: "Home",
             // ask calToAction vs blocks, which to use when
             callToAction: {
-                src: "images/SmashGamesLogo-short.jpg",
+                src: "images/SmashGamesLogo-short.png",
                 altText: "Smash Games Logo"
             }
         },
@@ -131,7 +131,51 @@ let page = data.pages[1];
 document.title = data.brandName + " - " + page.pageName;
 
 document.getElementById("mainTitle").innerHTML = data.brandName.toUpperCase();
-document.getElementbyId("pageName").innerHTML = page.pageName;
+document.getElementById("pageName").innerHTML = page.pageName;
 
+createCallToAction(page.blocks[0]);
+
+function createImage(imgData) {
+    let img = document.createElement("img");
+    img.src = imgData.src;
+    img.alt = imgData.alt;
+
+    return img;
+}
+
+function createButtonLink(linkData) {
+    let link = document.createElement("a");
+    link.classList.add("btn");
+    link.href = linkData.buttonLinkSrc;
+    link.target = "_blank";
+    link.innerHTML = linkData.buttonLinkText + ' <i class="fa-brands fa-steam-symbol"></i></a>';
+    return link;
+};
+
+function createCallToAction(blockData) {
+    // get main container
+    let container = document.getElementById("main");
+
+    // create block
+    let block = document.createElement("div");
+    block.classList.add("call-to-action");
+
+    // add image
+    block.appendChild(createImage(blockData));
+    block.appendChild(createButtonLink(blockData));
+
+    // add break
+    block.appendChild(document.createElement("br"));
+    
+    // add block to main
+    container.appendChild(block);
+}
 
 // console.log(data.pages[1].blocks[2].cards[1].body);
+
+// code to create blocks: 
+{/* <div class="call-to-action">
+    <img src="images/Inferno-Jumbotron.png" alt="Inferno Blast Gameplay" />
+    <br />
+    <a class="btn" href="https://steampowered.com" target="_blank">Buy Now on Steam! <i class="fa-brands fa-steam-symbol"></i></a>
+</div> */}
