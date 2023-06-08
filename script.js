@@ -147,12 +147,14 @@ function createPage(blocks) {
         {
             createDescription(currentBlock);
         }
+        else if (currentBlock.type == "deck") {
+            createDeck(currentBlock);
+        }
         else {
             console.log("no block template found");
         }
     }
 }
-
 function createImage(imgData) {
     let img = document.createElement("img");
     img.src = imgData.src;
@@ -168,7 +170,6 @@ function createButtonLink(linkData) {
     link.innerHTML = linkData.buttonLinkText + ' <i class="fa-brands fa-steam-symbol"></i></a>';
     return link;
 }
-
 function createCallToAction(blockData) {
     // create block
     let block = document.createElement("div");
@@ -199,13 +200,34 @@ function createDescription(blockData) {
     // add block to main
     container.appendChild(block);
 } 
+function createDeck(blockData) {
+    let block = document.createElement("div");
+    block.classList.add("features");
 
+    let deck = document.creasteElement("div");
+    deck.classList.add("deck");
+    block.appendChild(deck);
 
-// console.log(data.pages[1].blocks[2].cards[1].body);
+    for (let i = 0; i < blockData.cards.length; i++) {
+        let card = document.createElement("div");
+        card.classList.add("card");
+        card.appendChild(createImage({
+            src: blockData.cards[i].src, 
+            alt: blockData.cards[i].altText
+        }));
 
-// code to create blocks: 
-{/* <div class="call-to-action">
-    <img src="images/Inferno-Jumbotron.png" alt="Inferno Blast Gameplay" />
-    <br />
-    <a class="btn" href="https://steampowered.com" target="_blank">Buy Now on Steam! <i class="fa-brands fa-steam-symbol"></i></a>
-</div> */}
+        let body = document.createElement("div");
+        body.classList.add("card-body");
+        card.appendChild(body);
+        body.appendChild(document.createElement("h3"));
+        title.innerHTML = blockData.cards[i].title;
+        let text = document.createElement("p");
+        text.innerHTML = blockData.cards[i].body;
+
+        body.appendChild(title);
+        body.appendChild(text);
+        block.appendChild(card);
+    }
+
+    container.appendChild(block);
+}
